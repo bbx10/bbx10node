@@ -1,0 +1,66 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <title>X10 nodejs hello world</title>
+        <style type="text/css">
+            table {
+                width: 100%;
+            }
+            td {
+                border: 1px solid;
+                font-size: 200%;
+            }
+        </style>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+            var socket = io.connect('http://' + location.hostname + ":" + location.port);
+            socket.on('buttonupdate', function (data) {
+                var i;
+                var e;
+                for (i = 0; i < data.length; i++) {
+                    e = document.getElementById(data[i].buttonid);
+                    if (data[i].state === 'off') {
+                        e.style.backgroundColor = "black";
+                        e.style.color = "white";
+                    }
+                    else if (data[i].state === 'on') {
+                        e.style.backgroundColor = "yellow";
+                        e.style.color = "black";
+                    }
+                    else {
+                        e.style.backgroundColor = "gray";
+                        e.style.color = "black";
+                    }
+                }
+            });
+            function buttonclick(e)
+            {
+                socket.emit('buttonpress', { button: e.id } );
+            }
+        </script>
+    </head>
+    <body>
+        <h1>X10 Control Panel</h1>
+        <table>
+            <tr><td>A</td>
+                <td><div id="A1" onclick="buttonclick(this);">1</div></td>
+                <td><div id="A2" onclick="buttonclick(this);">2</div></td>
+                <td><div id="A3" onclick="buttonclick(this);">3</div></td>
+                <td><div id="A4" onclick="buttonclick(this);">4</div></td>
+                <td><div id="A5" onclick="buttonclick(this);">5</div></td>
+                <td><div id="A6" onclick="buttonclick(this);">6</div></td>
+                <td><div id="A7" onclick="buttonclick(this);">7</div></td>
+                <td><div id="A8" onclick="buttonclick(this);">8</div></td>
+                <td><div id="A9" onclick="buttonclick(this);">9</div></td>
+                <td><div id="A10" onclick="buttonclick(this);">10</div></td>
+                <td><div id="A11" onclick="buttonclick(this);">11</div></td>
+                <td><div id="A12" onclick="buttonclick(this);">12</div></td>
+                <td><div id="A13" onclick="buttonclick(this);">13</div></td>
+                <td><div id="A14" onclick="buttonclick(this);">14</div></td>
+                <td><div id="A15" onclick="buttonclick(this);">15</div></td>
+                <td><div id="A16" onclick="buttonclick(this);">16</div></td>
+            </tr>
+        </table>
+    </body>
+</html>

@@ -1,1 +1,25 @@
-Experiment in Beagle Board/Bone X10 Home Automation using node.js
+Experiment in Beagle Bone X10 Home Automation using node.js
+
+== Install mochad and connect an X10 controller ==
+
+mochad is a TCP gateway to X10 home automation controllers including the
+CM15A (US), CM19A (US), CM15Pro (EU), and CM19Pro (EU).
+
+See http://sourceforge.net/apps/mediawiki/mochad/index.php?title=BeagleBone_running_Angstrom_Linux
+for details on building and running mochad.
+
+== Control panel webapp ==
+
+This Hello World home automation control panel for X10 house/unit codes
+A1..A16. All connected clients should see the same result. Clicking on a X10
+address (for example, A3) will change the background color to yellow for ON
+well as send the "pl A3 on" command to mochad to turn the light on. All other
+client control panels will also see the background color for A3 change to
+yellow for ON.
+
+To run the control panel web app 
+
+    node app.js
+
+On a web browser connect to beaglebone:8080. Use the IP address of your
+Beaglebone.
