@@ -35,7 +35,7 @@ exports.select = function(x10addr)
     housecode = housecodetoint(x10addr.slice(0, 1));
     if (housecode >= 0) {
         unitcode = x10addr.slice(1);
-        console.log(housecode.toString() + unitcode);
+        //console.log(housecode.toString() + unitcode);
         if (X10addrselected[housecode] === undefined) {
             X10addrselected[housecode] = [];
             X10addrselected[housecode][0] = 0;

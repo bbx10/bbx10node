@@ -123,14 +123,14 @@ mochad.on('connect', function() {
     });
     this.on('data', function(data) {
         var str = data.toString(), lines, aLine, i;
-        console.log('on data');
+        //console.log('on data');
         if (this.PartialLine !== "") {
             str = this.PartialLine + str;
         }
         lines = str.split('\n');
         for (i = 0; i < (lines.length - 1); i++) {
             aLine = lines[i];
-            console.log(aLine);
+            //console.log(aLine);
             process_line(this, aLine);
         }
         if (str.slice(-1) === '\n') {
