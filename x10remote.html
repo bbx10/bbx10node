@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+    <head>
+        <title>Web Remote</title>
+        <style type="text/css">
+            td {
+                font-size: 600%;
+            }
+        </style>
+        <!-- 
+            #buttons {
+                width: 50%;
+                font-size: 400%;
+            }
+            td {
+                text-align: left;
+            }
+            td {
+                font-size: 100%;
+            }
+            table {
+                width: 100%;
+            }
+        -->
+        <script src="/socket.io/socket.io.js"></script>
+        <script type=text/javascript>
+            <!--
+            var socket = io.connect('http://' + location.hostname + ":" + location.port);
+            socket.on('buttonupdate', function (data) {
+                var i, e;
+                for (i = 0; i < data.length; i++) {
+                    console.log("buttonupdate " + data[i].buttonid);
+                    e = document.getElementById(data[i].buttonid);
+                    if (e == undefined) continue;
+                    if (data[i].state === 'off') {
+                        e.style.backgroundColor = "black";
+                        e.style.color = "white";
+                    }
+                    else if (data[i].state === 'on') {
+                        e.style.backgroundColor = "yellow";
+                        e.style.color = "black";
+                    }
+                    else {
+                        e.style.backgroundColor = "gray";
+                        e.style.color = "black";
+                    }
+                }
+            });
+            function buttonclick(e)
+            {
+                socket.emit('buttonpress', { button: e.id } );
+            }
+            function mkrow(i, j)
+            {
+                document.writeln("<td><div id=\"A", i ,"\" onclick=\"buttonclick(this);\">A", i, "</div></td>");
+                document.writeln("<td><div id=\"A", j ,"\" onclick=\"buttonclick(this);\">A", j, "</div></td>");
+            }
+            function mkbuttons(nbuttons)
+            {
+                var i, j;
+                document.writeln("<table>");
+                for (i = 1; i <= (nbuttons/2); i++) {
+                    document.writeln("<tr>");
+                    j = i + (nbuttons/2);
+                    switch (i) {
+                        case 1: 
+                            document.writeln("<td rowspan=2><div id=\"ALON\" onclick=\"buttonclick(this);\">All Lights On</div></td>");
+                document.writeln("<td><div id=\"A1\" onclick=\"buttonclick(this);\">A1</div></td>");
+                document.writeln("<td><div id=\"A9\" onclick=\"buttonclick(this);\">A9</div></td>");
+                            break;
+                        case 3: 
+                            document.writeln("<td rowspan=2><div id=\"ALOFF\" onclick=\"buttonclick(this);\">All Lights Off</div></td>");
+                            mkrow(i,j);
+                            break;
+                        case 5: 
+                            document.writeln("<td rowspan=2><div id=\"AUOFF\" onclick=\"buttonclick(this);\">All Units On</div></td>");
+                            mkrow(i,j);
+                            break;
+                        case 7:
+                            document.writeln("<td rowspan=2><div id=\"TBD\" onclick=\"buttonclick(this);\">TBD</div></td>");
+                            mkrow(i,j);
+                            break;
+                        default:
+                            mkrow(i,j);
+                            break;
+                    }
+                    document.writeln("</tr>");
+                }
+                document.writeln("</table>");
+            }
+            //-->
+        </script>
+    </head>
+    <body>
+        <div id=buttons>
+            <script type="text/javascript">
+                <!--
+                mkbuttons(16);
+                //-->
+                </script>
+        </div>
+    </body>
+</html>
+

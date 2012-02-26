@@ -15,17 +15,33 @@ app.listen(8080);
 // buttons.html.
 function handler (req, res)
 {
-    //console.log(req.url);
-    fs.readFile(__dirname + '/buttons.html',
-                function (err, data) {
-                    if (err) {
-                        res.writeHead(500);
-                        return res.end('Error loading buttons.html');
-                    }
+    switch (req.url) {
+        case '/buttons.html':
+            fs.readFile(__dirname + '/buttons.html', 
+                        function(err,data) {
+                            if (err) {
+                                res.writeHead(500);
+                                return res.end('Error loading buttons.html');
+                            }
+                            res.writeHead(200);
+                            res.end(data);
+                        });
+                        break;
 
-                    res.writeHead(200);
-                    res.end(data);
-                });
+        default:
+            //console.log(req.url);
+            fs.readFile(__dirname + '/x10remote.html',
+                        function (err, data) {
+                            if (err) {
+                                res.writeHead(500);
+                                return res.end('Error loading x10remote.html');
+                            }
+
+                            res.writeHead(200);
+                            res.end(data);
+                        });
+                        break;
+    }
 }
 
 var LastEvent='';
